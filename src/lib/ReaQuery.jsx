@@ -13,7 +13,7 @@ class ReaQuery {
     }
   }
 
-  Get(selector) {
+  Read(selector) {
     if (!this.ref) {
       console.error('No valid DOM reference set in ReaQuery.');
       return [];
@@ -24,6 +24,8 @@ class ReaQuery {
 
     return ans.querySelectorAll(selector);
   }
+
+  Edit(selector) {}
 
   Ref() {
     return useRef(null);

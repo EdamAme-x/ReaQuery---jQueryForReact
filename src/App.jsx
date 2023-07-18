@@ -31,7 +31,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              const elements = $.get('p');
+              const elements = $.Read('p')[0].innerHTML; //読み取り専用
               console.log(elements);
             }}
           >
