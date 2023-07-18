@@ -1,20 +1,21 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import ReaQuery from './lib/ReaQuery.jsx';
+import ReaQuery from './lib/ReaQuery';
 
 function App() {
   const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const $ = new ReaQuery();
 
-  let $ = new ReaQuery();
-
-  const document = $.document();
-  console.log(document);
+  useEffect(() => {
+    $.document(ref);
+  }, []);
 
   return (
     <>
-      <div ref={document}>
+      <div ref={ref}>
         <div>
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -30,7 +31,8 @@ function App() {
           </button>
           <button
             onClick={() => {
-              alert($.get("p"))
+              const elements = $.get('p');
+              console.log(elements);
             }}
           >
             TextChange

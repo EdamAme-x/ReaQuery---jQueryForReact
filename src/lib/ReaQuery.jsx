@@ -1,30 +1,27 @@
-import { useRef } from 'react';
-
 class ReaQuery {
-  constructor() {}
+  constructor() {
+    this.ref = null;
+  }
 
-  document(init) {
-    this.ref = useRef(null);
-    return this.ref;
+  document(ref) {
+    if (ref && ref.current) {
+      this.ref = ref.current;
+    } else {
+      console.error('Invalid ref passed to ReaQuery document method.');
+    }
   }
 
   get(selector) {
-    this.ref.current // .current ~ querySelectorAllでで取得した時の[0]
+    if (!this.ref) {
+      console.error('No valid DOM reference set in ReaQuery.');
+      return [];
+    }
 
     const parser = new DOMParser();
     const ans = parser.parseFromString(this.ref.innerHTML, 'text/html');
 
-    this.DOM = ans;
-
-    return this.DOM.querySelectorAll(selector);
-  } 
-
-  DOM = {
-
-  } // attr()関数やfirst()関数はここにぶち込む
-
-  ref = !1;
-
+    return ans.querySelectorAll(selector);
+  }
 }
 
 export default ReaQuery;
