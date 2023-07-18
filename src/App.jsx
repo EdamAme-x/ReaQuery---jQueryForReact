@@ -6,12 +6,12 @@ import ReaQuery from './lib/ReaQuery';
 
 function App() {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const $ = new ReaQuery();
+  const $ = new ReaQuery(); // 初期化
+  const ref = $.Ref(); // refを取得
 
   useEffect(() => {
-    $.document(ref);
-  }, []);
+    $.Set(ref); // refをセット
+  }, []); // 最初のリロード
 
   return (
     <>
