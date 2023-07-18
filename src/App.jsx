@@ -12,6 +12,12 @@ function App() {
   const document = $.document();
   console.log(document);
 
+  function jq() {
+    const parser = new DOMParser();
+    const ans = parser.parseFromString($.get().innerHTML, 'text/html');
+    console.log(ans.querySelector('p'));
+  }
+
   return (
     <>
       <div ref={document}>
@@ -27,6 +33,13 @@ function App() {
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
+          </button>
+          <button
+            onClick={() => {
+              jq();
+            }}
+          >
+            TextChange
           </button>
           <p>
             Edit <code>src/App.jsx</code> and save to test HMR
