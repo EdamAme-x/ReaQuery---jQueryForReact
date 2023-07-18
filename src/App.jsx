@@ -12,12 +12,6 @@ function App() {
   const document = $.document();
   console.log(document);
 
-  function jq() {
-    const parser = new DOMParser();
-    const ans = parser.parseFromString($.get().innerHTML, 'text/html');
-    console.log(ans.querySelector('p'));
-  }
-
   return (
     <>
       <div ref={document}>
@@ -36,7 +30,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              jq();
+              alert($.get("p"))
             }}
           >
             TextChange

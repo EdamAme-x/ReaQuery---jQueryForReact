@@ -11,7 +11,12 @@ class ReaQuery {
   get(selector) {
     this.ref.current // .current ~ querySelectorAllでで取得した時の[0]
 
-    return this.ref.current;
+    const parser = new DOMParser();
+    const ans = parser.parseFromString(this.ref.innerHTML, 'text/html');
+
+    this.DOM = ans;
+
+    return this.DOM.querySelectorAll(selector);
   } 
 
   DOM = {
